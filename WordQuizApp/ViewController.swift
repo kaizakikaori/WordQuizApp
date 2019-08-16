@@ -27,10 +27,6 @@ class ViewController: UIViewController {
     
     var sam: [Bool] = []
     
-    //
-    //
-    var correctOrlncorrect: [Bool] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -97,21 +93,24 @@ class ViewController: UIViewController {
         TextView.text = question[questionNumber - 1]
         NavigationItem.title = "\(questionNumber)"
        }else{
+ 
         //画面遷移
         performSegue(withIdentifier: "toresult", sender: nil)
         reset()
-        
         }
     }
-    
+    // 問題の状況をリセットする関数
     func reset() {
+        // 問題を初めからにする
         TextView.text = question [0]
+        // ボタンを見えるようにする
         for button in StackView.arrangedSubviews{
             button.isHidden = false
         }
-        
+        // 問題番号を初めからにする
         questionNumber = 1
-        
+        // 正解、不正解を入れる配列を初期化する
+        sam = []
         
     }
     
@@ -126,7 +125,7 @@ class ViewController: UIViewController {
             nextVC.trable = sam
         }
     }
-    
+    // 解答ボタン
     @IBAction func TapButton(_ sender: UIButton) {
         checkAnswer(playerAnswer: sender.tag)
         
