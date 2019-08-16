@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     "問2 イタリア共和国の世界遺産『フィレンツェの歴史地区』のあるフィレンツェを中心に、17世紀に栄えた芸術運動は何でしょうか。1. シュルレアリスム 2. アバンギャルド 3. ルネサンス",
     "問3 2016年のオリンピック開催地であるリオ・デ・ジャネイロで、ブラジル独立100周年を記念して作られたキリスト像が立つ場所として、正しいものはどれか。1. コパカバーナの山 2. コルコバードの丘"
     ]
+    
     //問題の答え
     let answers: [Int] = [1,3,2]
     //現在の問題番号を格納する変数
@@ -31,7 +32,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         TextView.text = question[0]
+        
+        NavigationItem.title = "\(questionNumber)"
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        NavigationItem.title = "問題へ"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NavigationItem.title = "\(questionNumber)"
+    }
+    
     func checkAnswer(playerAnswer: Int){
         
         if playerAnswer == answers[questionNumber - 1] {
